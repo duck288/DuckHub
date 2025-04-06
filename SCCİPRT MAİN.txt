@@ -369,3 +369,15 @@ toggleButton.Parent = game.CoreGui.ScreenGui -- veya senin GUI'nin ismi neyse
 toggleButton.MouseButton1Click:Connect(function()
     MainFrame.Visible = not MainFrame.Visible
 end)
+
+-- GUI'yi sürüklenebilir yap
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+-- RightShift tuşu ile GUI'yi aç/kapat
+local UIS = game:GetService("UserInputService")
+UIS.InputBegan:Connect(function(input, gpe)
+    if not gpe and input.KeyCode == Enum.KeyCode.RightShift then
+        MainFrame.Visible = not MainFrame.Visible
+    end
+end)
