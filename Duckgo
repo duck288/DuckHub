@@ -359,3 +359,13 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
                                                                                                                                                                                                                                                                                                                                                                                                                         }
                                                                                                                                                                                                                                                                                                                                                                 }
                                                     }
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0, 100, 0, 30)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.Text = "GUI Aç/Kapat"
+toggleButton.Parent = game.CoreGui.ScreenGui -- veya senin GUI'nin ismi neyse
+
+toggleButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
+end)
