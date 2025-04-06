@@ -381,3 +381,67 @@ UIS.InputBegan:Connect(function(input, gpe)
         MainFrame.Visible = not MainFrame.Visible
     end
 end)
+
+
+-- ChatGPT X DuckGo Hub (Mobil Uyumludur) --
+
+local Gui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Drag = false
+local MousePos = nil
+
+Gui.Name = "ChatGPT_X_DuckGo"
+Gui.Parent = game.CoreGui
+Gui.ResetOnSpawn = false
+
+Frame.Size = UDim2.new(0, 300, 0, 400)
+Frame.Position = UDim2.new(0.5, -150, 0.5, -200)
+Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Frame.Active = true
+Frame.Draggable = true -- Mobil için özel sürükleme eklenecek
+Frame.Parent = Gui
+
+-- Mobil uyumlu sürükleme sistemi
+Frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        Drag = true
+        MousePos = input.Position
+    end
+end)
+
+Frame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch then
+        Drag = false
+    end
+end)
+
+Frame.InputChanged:Connect(function(input)
+    if Drag and input.UserInputType == Enum.UserInputType.Touch then
+        local delta = input.Position - MousePos
+        Frame.Position = UDim2.new(Frame.Position.X.Scale, Frame.Position.X.Offset + delta.X, Frame.Position.Y.Scale, Frame.Position.Y.Offset + delta.Y)
+        MousePos = input.Position
+    end
+end)
+
+-- Aç/Kapa butonu
+local Toggle = Instance.new("TextButton")
+Toggle.Size = UDim2.new(0, 120, 0, 35)
+Toggle.Position = UDim2.new(0, 10, 0, 10)
+Toggle.Text = "GUI Aç/Kapat"
+Toggle.Parent = Gui
+Toggle.MouseButton1Click:Connect(function()
+    Frame.Visible = not Frame.Visible
+end)
+
+-- Devamı: Auto Farm, Boss, Teleport, Fruit Finder vs. eklenecek alan
+
+-- Örnek Boss Seçimi (2. ve 3. Deniz)
+local BossList = {
+    "Don Swan",
+    "Fajita",
+    "Beautiful Pirate",
+    "Stone",
+    "Cake Queen"
+}
+
+-- Diğer özellikler burada genişletilir...
